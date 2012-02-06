@@ -113,10 +113,60 @@
 &lt;/style&gt;</pre>
         <p><span class="red">Yes, you need vendor prefixes for this as well.</span><br>This is simpler <span class="blue">and will be used for the rest of the demo.</span></p>
       </article>
-
+      <article>
+	<h3>Setting up styles for Animations</h3>
+	<p>There are differnt ways to apply these animations to a element, that will have differnt effects on the element. There are basically 3 differnt ways</p>
+	<ul class="build">
+	  <li>Adding animation straight to main styles<br>
+	    Element will always be animated with applied properties
+	  <li>Adding seperate animations to applied styles<br>
+	    Element will have a differnt animation properties when style is applied<br>
+	    <span class="green">(if style overwrites previous style)</span>
+	  <li>Creating a special class that will apply animation<br>
+	    Element will only animate when style is apply
+	</ul>
+      </article>
+      <article>
+	<h4>Adding Straight to Style</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .animated_element{
+    transition: all 500ms;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>This is the simplist way but does not only give the wanted results.</p>
+      </article>
+      <article>
+	<h4>Seperate Animations</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .animated_element{
+    transition: all 500ms;
+  }
+  
+  .animated_element.slow{
+    transition: all 1s;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>Once the 'slow' class is added the transition overwrites the original transition</p>
+      </article>
+      <article>
+	<h4>Dedicated Animation Class</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .element_style{
+    border-radius: 50px;
+  }
+  
+  .animate{
+    transition: all 500ms ease-in-out 100ms;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>When 'animate' class is applied the element with have a smooth animation. In contrast it will not have any animations applied when 'animate' is not applied.</p>
+      </article>
       <article>
         <h3>
-          Transition by Classes
+          Demo Using Javascript!
         </h3>
         <pre>&lt;style type="css/text"&gt;
   .demo_two{
@@ -140,11 +190,11 @@
         <h3>Adding the Class</h3>
         <pre>
 &lt;script&gt;
-//uisng html 5
+//using html 5
   var ele = document.querySelector('.demo_two');
   
   ele.addEventListener('click', function(){
-      ele.className = ele.className + ' clicked';  
+      this.className = ele.className + ' clicked';  
   });
 &lt;/script&gt;
         </pre>
@@ -156,248 +206,58 @@
 
       <article>
         <h3>
-         Differnt Methods of Applying Transition
+         Applying Inline Styles
         </h3>
-        <ul class="build">
-          <li>
-            Adding Transition directly to element styles <br> Always animated on any style change
-          </li>
-          <li>
-            Adding a differnt animation paramters to added class <br> Changing animations parameters on class toggle.
-          </li>
-          <li>
-            Only Adding animation when element need to be animated <br> Having a dedicated animation class
-          </li>
-        </ul>
-      </article>
-
-      <article class='smaller'>
-        <h3>
-          Slide with bullet points (small font)
-        </h3>
-        <ul>
-          <li>
-            Use this template to create your presentation
-          <li>
-            Use the provided color palette, box and arrow graphics, and
-            chart styles
-          <li>
-            Instructions are provided to assist you in using this
-            presentation template effectively
-          <li>
-            At all times strive to maintain Google's corporate look and feel
-        </ul>
-      </article>
-
-      <article>
-        <h3>
-          Slide with a table
-        </h3>
-        
-        <table>
-          <tr>
-            <th>
-              Name
-            <th>
-              Occupation
-          <tr>
-            <td>
-              Luke Mahé
-            <td>
-              V.P. of Keepin’ It Real
-          <tr>
-            <td>
-              Marcin Wichary
-            <td>
-              The Michael Bay of Doodles
-        </table>
-      </article>
-      
-      <article class='smaller'>
-        <h3>
-          Slide with a table (smaller text)
-        </h3>
-        
-        <table>
-          <tr>
-            <th>
-              Name
-            <th>
-              Occupation
-          <tr>
-            <td>
-              Luke Mahé
-            <td>
-              V.P. of Keepin’ It Real
-          <tr>
-            <td>
-              Marcin Wichary
-            <td>
-              The Michael Bay of Doodles
-        </table>
-      </article>
-      
-      <article>
-        <h3>
-          Styles
-        </h3>
-        <ul>
-          <li>
-            <span class='red'>class="red"</span>
-          <li>
-            <span class='blue'>class="blue"</span>
-          <li>
-            <span class='green'>class="green"</span>
-          <li>
-            <span class='yellow'>class="yellow"</span>
-          <li>
-            <span class='black'>class="black"</span>
-          <li>
-            <span class='white'>class="white"</span>
-          <li>
-            <b>bold</b> and <i>italic</i>
-        </ul>
-      </article>
-      
-      <article>
-        <h2>
-          Segue slide
-        </h2>
-      </article>
-
-      <article>
-        <h3>
-          Slide with an image
-        </h3>
-        <p>
-          <img style='height: 500px' src='images/example-graph.png'>
-        </p>
-        <div class='source'>
-          Source: Sergey Brin
-        </div>
-      </article>
-
-      <article>
-        <h3>
-          Slide with an image (centered)
-        </h3>
-        <p>
-          <img class='centered' style='height: 500px' src='images/example-graph.png'>
-        </p>
-        <div class='source'>
-          Source: Larry Page
-        </div>
-      </article>
-
-      <article class='fill'>
-        <h3>
-          Image filling the slide (with optional header)
-        </h3>
-        <p>
-          <img src='images/example-cat.jpg'>
-        </p>
-        <div class='source white'>
-          Source: Eric Schmidt
-        </div>
-      </article>
-
-      <article>
-        <h3>
-          This slide has some code
-        </h3>
-        <section>
+        <p>The animation will work even when adding styles inline.</p>
         <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
+&lt;script&gt;
+//using html 5
+  var ele = document.querySelector('.demo_three');
+  
+  ele.addEventListener('click', function(){
+      this.style.background = 'rgba(0,0,0,.3)';  
+  });
+&lt;/script&gt;
+        </pre>
+      </article>
+      <article>
+	<h4>Detecting CSS3 Properties</h4>
+	<p>Detecting CSS Properties in general is pretty to detect with javascript</p>
+	<pre>&lt;script&gt;
+  function supportTransitions(){
+    //Test for each vendor and W3C properties 
+    if(	'WebkitTransition' in document.body.style ||
+	'MozTransition' in document.body.style ||
+	'OTransition' in document.body.style ||
+	'MsTransition' in document.body.style ||
+	'transition' in document.body.style){
+	  return true;
+	}
+    
+    return false;
+  }
+  
+  if(supportTransition()){
+    console.log('I support Transitions');
   }
 &lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
-        </section>
+	</pre>
+	
       </article>
-      
-      <article class='smaller'>
-        <h3>
-          This slide has some code (small font)
-        </h3>
-        <section>
-        <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
-  }
+      <article>
+	<h4>jQuery Easy Fallback</h4>
+	<p>Using jQuery we can easily set up a fallback without much extra coding</p>
+	<pre>&lt;script&gt;
+  var styles = {width : '500px'},
+    type = ['css', 'animate'],
+    // Using feature detection function from above
+    support = (supportTransition()) ? 0 : 1;
+    
+    $('.element')[type[support]](styles);
+    
 &lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
-        </section>
+	</pre>
       </article>
-      
-      <article>
-        <q>
-          The best way to predict the future is to invent it.
-        </q>
-        <div class='author'>
-          Alan Kay
-        </div>
-      </article>
-      
-      <article class='smaller'>
-        <q>
-          A distributed system is one in which the failure of a computer 
-          you didn’t even know existed can render your own computer unusable.
-        </q>
-        <div class='author'>
-          Leslie Lamport
-        </div>
-      </article>
-      
-      <article class='nobackground'>
-        <h3>
-          A slide with an embed + title
-        </h3>
-        
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-
-      <article class='nobackground'>
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-
-      <article class='fill'>
-        <h3>
-          Full-slide embed with (optional) slide title on top
-        </h3>
-        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-      </article>
-      
-      <article>
-        <h3>
-          Thank you!
-        </h3>
-        
-        <ul>
-          <li>
-            <a href='http://www.google.com'>google.com</a>
-        </ul>
-      </article>
-
     </section>
 <script src="script.js"></script>
   </body>
