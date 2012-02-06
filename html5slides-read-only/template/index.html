@@ -44,7 +44,7 @@
           <br>
         </h1>
         <p>
-          Jacob Lowe
+          -Jacob Lowe
         
         </p>
       </article>
@@ -61,15 +61,15 @@
       </article>
       
       <article>
-        <h3>CSS3 Animation R</h3>
-        <p>Css3 animations are animations that are driven with css.</p>
+        <h3>CSS3 Animation Are</h3>
+        <p class="green">animations that are driven with css.</p>
         <div class="hover_demo"><p>Hover</p></div>
-        <p>There is two ways to do CSS3 animations.</p>
+        <p>There is two ways to achieve CSS3 animations.</p>
       </article>
       
             <article class="smaller">
         <h4>
-          Animation
+          Animation Property
         </h4>
         <pre>&lt;style type="css/text"&gt;
 @keyframes resize {
@@ -91,31 +91,27 @@
 	animation-direction: alternate;
 }	
 &lt;/style&gt;</pre>
-        <p>Dont Forget Vendor Prefixes</p>
+        <p class="red">Dont Forget Vendor Prefixes</p>
       </article>
 
       <article class="smaller">
         <h4>
-          Transitions
+          Transition Property
         </h4>
         <pre>&lt;style type="css/text"&gt;
-  .animate_all{
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -o-transition: all .5s;
-    -ms-transition: all .5s;
-    transition: all .5s;
+  #animate_all{
+    transition-property : all;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
   }
-  .animate_opacity{
-    -webkit-transition: opacity 500ms;
-    -moz-transition: opacity 500ms;
-    -o-transition: opacity 500ms;
-    -ms-transition: opacity 500ms;
-    transition: opacity 500ms;
+  
+  #animate_opacity{
+    /* Shorthand */
+    transition: opacity 500ms ease-in .01s;
   }
 &lt;/style&gt;</pre>
-        <p>This is simpler<br>
-        <span class="blue">and will be used for the rest of the demo.</span></p>
+        <p><span class="red">Yes, you need vendor prefixes for this as well.</span><br>This is simpler <span class="blue">and will be used for the rest of the demo.</span></p>
       </article>
 
       <article>
