@@ -218,11 +218,14 @@
       this.style.background = 'rgba(0,0,0,.3)';  
   });
 &lt;/script&gt;
-        </pre>
+        </pre>    
+        <p>Try it!</p>
+        
+        <div class="demo_three">Click Me</div>
       </article>
       <article>
 	<h4>Detecting CSS3 Properties</h4>
-	<p>Detecting CSS Properties in general is pretty to detect with javascript</p>
+	<p>Detecting CSS Properties in general is pretty to detect with javascript, do you have <a onclick="alert((supportTransition()) ? 'Yes you do' : 'Nope, Chuck testa');" class="blue" style="cursor: pointer;">CSS3 transitions</a></p>
 	<pre>&lt;script&gt;
   function supportTransitions(){
     //Test for each vendor and W3C properties 
@@ -236,12 +239,7 @@
     
     return false;
   }
-  
-  if(supportTransition()){
-    alert('I support Transitions');
-  }
-&lt;/script&gt;
-	</pre>
+&lt;/script&gt;</pre>
 	
       </article>
       <article>
@@ -258,6 +256,10 @@
     
 &lt;/script&gt;
 	</pre>
+      </article>
+      <article>
+        <h1>Questions?!?!</h1>
+        <p><a href="http://www.redeyeoperations.com/wp-content/uploads/2011/12/path-animation.html">Advanced Demo</a> of what Javascript and CSS3 animations can do together</p>
       </article>
     </section>
 <script src="script.js"></script>

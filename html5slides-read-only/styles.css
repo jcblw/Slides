@@ -649,3 +649,17 @@ article.smaller q::after {
     opacity: 1;
     box-shadow: 0 0 10px #06C;
   }
+  
+  .demo_three{
+    -webkit-transition: all 1000ms;
+    -moz-transition: all 1000ms;
+    -o-transition: all 1000ms;
+    -ms-transition: all 1000ms;
+    transition: all 1000ms;
+    background:  rgba(0,0,0,1);
+    border-radius: 4px;
+    margin: 10px auto;
+    width: 200px;
+    text-align: center;
+    box-shadow: inset 0px 1px 1px rgba(255,255,255,.3), 0px 1px 1px rgba(0,0,0,.3);
+  }

@@ -22,9 +22,9 @@
   
 //Detection script
 
-var supportTranstion;
+var supportTransition;
 (function(){
-    supportTranstion = function (){
+    supportTransition = function (){
         //Test for each vendor and W3C properties 
         if(	'WebkitTransition' in document.body.style ||
             'MozTransition' in document.body.style ||
