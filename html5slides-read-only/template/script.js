@@ -40,15 +40,15 @@ var supportTransition;
 
 // Jquery Fallback
 
-(function($){
-    
-    var styles = {width : '500px'},
-    duration = 500,
-    type = ['css', 'animate'],
-    // Using feature detection function from above
-    support = (supportTransition()) ? 0 : 1;
-    
-    $('.element')[type[support]](styles, duration);
-    
-}(jQuery))
+//(function($){
+//    
+//    var styles = {width : '500px'},
+//    duration = 500,
+//    type = ['css', 'animate'],
+//    // Using feature detection function from above
+//    support = (supportTransition()) ? 0 : 1;
+//    
+//    $('.element')[type[support]](styles, duration);
+//    
+//}(jQuery))
   
