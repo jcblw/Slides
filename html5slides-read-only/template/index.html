@@ -14,7 +14,7 @@
 
 <html>
   <head>
-    <title>Presentation</title>
+    <title>Javascript ♥ CSS3 Animations</title>
 
     <meta charset='utf-8'>
     <script
@@ -53,7 +53,7 @@
         <h3>Why use CSS3 Animations</h3>
         <ul class=build>
           <li><p>Css3 Animations are very smooth and can do alot  more, faster then javascript animations (less code). </p>
-          <li><p>They degrade gracefully because they do not effect, in any way, browsers that do not support </p>
+          <li><p>They degrade gracefully because they do not effect, in any way, browsers that do not support CSS3 Animations</p>
           <li><p>Easliy Detectable in Javascript</p>
           <li><p>CSS3 Animations are hardware accelerated in mobile safari.</p>
           <li><p>Most importantly it allows you to free up your javascript to do more important task.  </p>
@@ -238,7 +238,7 @@
   }
   
   if(supportTransition()){
-    console.log('I support Transitions');
+    alert('I support Transitions');
   }
 &lt;/script&gt;
 	</pre>
@@ -249,11 +249,12 @@
 	<p>Using jQuery we can easily set up a fallback without much extra coding</p>
 	<pre>&lt;script&gt;
   var styles = {width : '500px'},
+    duration = 500,
     type = ['css', 'animate'],
     // Using feature detection function from above
     support = (supportTransition()) ? 0 : 1;
     
-    $('.element')[type[support]](styles);
+    $('.element')[type[support]](styles, duration);
     
 &lt;/script&gt;
 	</pre>
