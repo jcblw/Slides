@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Javascript ♥ CSS3 Animations</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='slides.js'></script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article>
+        <h1>
+           Javascript <span class=red>♥</span><br>
+          CSS3 Animations
+          <br>
+        </h1>
+        <p>
+          -Jacob Lowe
+        
+        </p>
+      </article>
+      
+      <article>
+        <h3>Why use CSS3 Animations</h3>
+        <ul class=build>
+          <li><p>Css3 Animations are very smooth and can do alot  more, faster then javascript animations (less code). </p>
+          <li><p>They degrade gracefully because they do not effect, in any way, browsers that do not support CSS3 Animations</p>
+          <li><p>Easliy Detectable in Javascript</p>
+          <li><p>CSS3 Animations are hardware accelerated in mobile safari.</p>
+          <li><p>Most importantly it allows you to free up your javascript to do more important task.  </p>
+        </ul>
+      </article>
+      
+      <article>
+        <h3>CSS3 Animation Are</h3>
+        <p class="green">animations that are driven with css.</p>
+        <div class="hover_demo"><p>Hover</p></div>
+        <p>There is two ways to achieve CSS3 animations.</p>
+      </article>
+      
+            <article class="smaller">
+        <h4>
+          Animation Property
+        </h4>
+        <pre>&lt;style type="css/text"&gt;
+@keyframes resize {
+	0% {
+		padding: 0;
+	}
+	50% {
+		padding: 0 20px;
+	}
+	100% {
+		padding: 0 100px;
+	}
+}
+	
+#box {
+	animation-name: resize;
+	animation-duration: 1s;
+	animation-iteration-count: 4;
+	animation-direction: alternate;
+}	
+&lt;/style&gt;</pre>
+        <p class="red">Dont Forget Vendor Prefixes</p>
+      </article>
+
+      <article class="smaller">
+        <h4>
+          Transition Property
+        </h4>
+        <pre>&lt;style type="css/text"&gt;
+  #animate_all{
+    transition-property : all;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+  }
+  
+  #animate_opacity{
+    /* Shorthand */
+    transition: opacity 500ms ease-in .01s;
+  }
+&lt;/style&gt;</pre>
+        <p><span class="red">Yes, you need vendor prefixes for this as well.</span><br>This is simpler <span class="blue">and will be used for the rest of the demo.</span></p>
+      </article>
+      <article>
+	<h3>Setting up styles for Animations</h3>
+	<p>There are differnt ways to apply these animations to a element, that will have differnt effects on the element. There are basically 3 differnt ways</p>
+	<ul class="build">
+	  <li>Adding animation straight to main styles<br>
+	    Element will always be animated with applied properties
+	  <li>Adding seperate animations to applied styles<br>
+	    Element will have a differnt animation properties when style is applied<br>
+	    <span class="green">(if style overwrites previous style)</span>
+	  <li>Creating a special class that will apply animation<br>
+	    Element will only animate when style is apply
+	</ul>
+      </article>
+      <article>
+	<h4>Adding Straight to Style</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .animated_element{
+    transition: all 500ms;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>This is the simplist way but does not only give the wanted results.</p>
+      </article>
+      <article>
+	<h4>Seperate Animations</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .animated_element{
+    transition: all 500ms;
+  }
+  
+  .animated_element.slow{
+    transition: all 1s;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>Once the 'slow' class is added the transition overwrites the original transition</p>
+      </article>
+      <article>
+	<h4>Dedicated Animation Class</h4>
+	<pre>&lt;style type="text/css"&gt;
+  .element_style{
+    border-radius: 50px;
+  }
+  
+  .animate{
+    transition: all 500ms ease-in-out 100ms;
+  }
+&lt;/style&gt;
+	</pre>
+	<p>When 'animate' class is applied the element with have a smooth animation. In contrast it will not have any animations applied when 'animate' is not applied.</p>
+      </article>
+      <article>
+        <h3>
+          Demo Using Javascript!
+        </h3>
+        <pre>&lt;style type="css/text"&gt;
+  .demo_two{
+    opacity: .5;
+    box-shadow: 0 0 1px #06C;
+    transition: all 1000ms;
+  }
+  
+  .demo_two.clicked{
+    opacity: 1;
+    box-shadow: 0 0 10px #06C;
+  }
+&lt;/style&gt;</pre>
+        
+        <p>
+          I add the changes that Id like to animate to. Then I add the class using javascript.
+        </p>
+      </article>
+
+      <article>
+        <h3>Adding the Class</h3>
+        <pre>
+&lt;script&gt;
+//using html 5
+  var ele = document.querySelector('.demo_two');
+  
+  ele.addEventListener('click', function(){
+      this.className = ele.className + ' clicked';  
+  });
+&lt;/script&gt;
+        </pre>
+        <p>Try it!</p>
+        
+        <div class="demo_two">Click Me</div>
+
+      </article>
+
+      <article>
+        <h3>
+         Applying Inline Styles
+        </h3>
+        <p>The animation will work even when adding styles inline.</p>
+        <pre>
+&lt;script&gt;
+//using html 5
+  var ele = document.querySelector('.demo_three');
+  
+  ele.addEventListener('click', function(){
+      this.style.background = 'rgba(0,0,0,.3)';  
+  });
+&lt;/script&gt;
+        </pre>    
+        <p>Try it!</p>
+        
+        <div class="demo_three">Click Me</div>
+      </article>
+      <article>
+	<h4>Detecting CSS3 Properties</h4>
+	<p>Detecting CSS Properties in general is pretty to detect with javascript, do you have <a onclick="alert((supportTransition()) ? 'Yes you do' : 'Nope, Chuck testa');" class="blue" style="cursor: pointer;">CSS3 transitions</a></p>
+	<pre>&lt;script&gt;
+  function supportTransitions(){
+    //Test for each vendor and W3C properties 
+    if(	'WebkitTransition' in document.body.style ||
+	'MozTransition' in document.body.style ||
+	'OTransition' in document.body.style ||
+	'MsTransition' in document.body.style ||
+	'transition' in document.body.style){
+	  return true;
+	}
+    
+    return false;
+  }
+&lt;/script&gt;</pre>
+	
+      </article>
+      <article>
+	<h4>jQuery Easy Fallback</h4>
+	<p>Using jQuery we can easily set up a fallback without much extra coding</p>
+	<pre>&lt;script&gt;
+  var styles = {width : '500px'},
+    duration = 500,
+    type = ['css', 'animate'],
+    // Using feature detection function from above
+    support = (supportTransition()) ? 0 : 1;
+    
+    $('.element')[type[support]](styles, duration);
+    
+&lt;/script&gt;
+	</pre>
+      </article>
+      <article>
+        <h1>Questions?!?!</h1>
+        <p><a href="http://www.redeyeoperations.com/wp-content/uploads/2011/12/path-animation.html">Advanced Demo</a> of what Javascript and CSS3 animations can do together</p>
+      </article>
+    </section>
+<script src="script.js"></script>
+  </body>
+</html>
