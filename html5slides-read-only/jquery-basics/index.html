@@ -122,106 +122,247 @@
             <pre>var that = $(this);
 
 that.css(‘border’, ‘1px solid yellow’);</pre>
-      </article>
-      <article>
-
-      </article>
-      <article>
-        <h3>
-          Demo Using Javascript!
-        </h3>
-        <pre>&lt;style type="css/text"&gt;
-  .demo_two{
-    opacity: .5;
-    box-shadow: 0 0 1px #06C;
-    transition: all 1000ms;
-  }
-  
-  .demo_two.clicked{
-    opacity: 1;
-    box-shadow: 0 0 10px #06C;
-  }
-&lt;/style&gt;</pre>
-        
-        <p>
-          I add the changes that Id like to animate to. Then I add the class using javascript.
-        </p>
+	  </li>
+	</ul>
       </article>
 
       <article>
-        <h3>Adding the Class</h3>
-        <pre>
-&lt;script&gt;
-//using html 5
-  var ele = document.querySelector('.demo_two');
-  
-  ele.addEventListener('click', function(){
-      this.className = ele.className + ' clicked';  
-  });
-&lt;/script&gt;
-        </pre>
-        <p>Try it!</p>
-        
-        <div class="demo_two">Click Me</div>
+        <h4>Return More</h4>
+
+	<p>What does jQuery return? Well itself of course, well most of the time. </p>
+
+	<pre>var ele = $(‘.element’);
+
+console.log(ele);
+
+//This looks like
+
+//[‘&lt;div class=”element”/&gt;’, ‘&lt;div class=”element”/&gt;’, ‘&lt;span class=”element”/&gt;’]</pre>
+
+<p>but what is</p>
+
+<pre>ele[0]
+
+//null</pre>
+      </article>
+<article>
+
+ <h3>In and out</h3>>
+
+<pre>var in = $(‘.element’);
+
+var out = in.get();
+
+//Back in
+in = $(out)</pre>
+      </article>
+
+      <article>
+        <h1>Write less Do more</h1>
+
+	<p>Do more what?</p>
 
       </article>
 
       <article>
-        <h3>
-         Applying Inline Styles
-        </h3>
-        <p>The animation will work even when adding styles inline.</p>
-        <pre>
-&lt;script&gt;
-//using html 5
-  var ele = document.querySelector('.demo_three');
-  
-  ele.addEventListener('click', function(){
-      this.style.background = 'rgba(0,0,0,.3)';  
-  });
-&lt;/script&gt;
-        </pre>    
-        <p>Try it!</p>
-        
-        <div class="demo_three">Click Me</div>
-      </article>
-      <article>
-	<h4>Detecting CSS3 Properties</h4>
-	<p>Detecting CSS Properties in general is pretty to detect with javascript, do you have <a onclick="alert((supportTransition()) ? 'Yes you do' : 'Nope, Chuck testa');" class="blue" style="cursor: pointer;">CSS3 transitions</a></p>
-	<pre>&lt;script&gt;
-  function supportTransitions(){
-    //Test for each vendor and W3C properties 
-    if(	'WebkitTransition' in document.body.style ||
-	'MozTransition' in document.body.style ||
-	'OTransition' in document.body.style ||
-	'MsTransition' in document.body.style ||
-	'transition' in document.body.style){
-	  return true;
-	}
+        <h3>Adding some Class</h3>
+
+<p>One of the best things that jQuery can do is add and remove classes. Why is this so cool? How about super interactive buttons.</p>
+<pre>(function($){
     
-    return false;
-  }
-&lt;/script&gt;</pre>
+    var btns = $('.button');
+    
+    btns.bind({
+    'mousedown': function(){
+        $(this).addClass('pressed');
+    },
+    'mouseout': function(){
+        if($(this).hasClass('pressed'){
+            $(this).addClass('voidPress');
+        }  
+    },
+    'mouseup' : function(){
+        $(this).removeClass('pressed');
+    }})
+    
+}(jQuery));</pre>
+
+<a href="https://gist.github.com/cb0e8a5643434f0f6101">Interactive Buttons</a>
+
+<p>A class for every state that isnt provided by browsers. All added and removed by jQuery</p>
+      </article>
+      <article>
+	<h3>Tranversing</h3>
+
+<p>Ever try and transverse through a hierarchy in javascript. It can be a pain, but not with jQuery.</p>
+
+<pre>$(‘.child’).parent(‘.parent’).parent(‘.grandparents’).find(‘.child’).siblings(‘.cousins’).children(‘.nephew’);</pre>
+
+<p>There are many methods to help transverse elements.</p>
+//Links to docs
+
+<pre>.parent
+.children
+.siblings
+.next
+.prev</pre>
 	
       </article>
       <article>
-	<h4>jQuery Easy Fallback</h4>
-	<p>Using jQuery we can easily set up a fallback without much extra coding</p>
-	<pre>&lt;script&gt;
-  var styles = {width : '500px'},
-    duration = 500,
-    type = ['css', 'animate'],
-    // Using feature detection function from above
-    support = (supportTransition()) ? 0 : 1;
-    
-    $('.element')[type[support]](styles, duration);
-    
-&lt;/script&gt;
-	</pre>
+	<h3>If no one listens does an event fire?</h3>
+<p>I have never really liked addEventListener, it seemes a bit lengthy.With jquery things get crunched.</p>
+
+<pre>$(‘.element’).click(callback);</pre>
+
+<p>There are many shorthands that come packed into jQuery: mouseover, mouseout, click, dblclick, even hover. And it gets better. (this should be no suprise because it was in a earlier slide)</p>
+
+<pre>$(‘.element’).bind({
+	‘click’ : clickHandle,
+	‘dblclick’ : dblClickHandle,
+	‘mouseover’ : mouseOverHandle
+});</pre>
+
+<p>Jquery really like to show off its objects. And it also allows you to teardown events.</p>
+
+<pre>$(‘.element’).unbind(‘click’, clickHandle);</pre>
+
+      </article>
+      <article>
+	<h3>Animations</h3>
+
+<p>You know that browser that doesnt support CSS3 animations, or much of anything. Well it has javascript animation support, and creating cool animations in jQuery is never a bad thing.</p>
+
+<pre>$(‘.element’).animate({parameters},duration);</pre>
+
+<p>It has very nice syntax, and its super simple to get up and running. Just write one line and you have a sweet animation.</p>
+
+<p>There is even many shorthand animations like</p>
+
+<pre>.slideUp
+.slideDown
+.fadeIn
+.fadeOut</pre>
+
+<p>that take a speed as an argument, and thats it.</p>
+      </article>
+      <article>
+	<h1>Taking it to 2.0</h1>
+
+<p>jQuery has some advanced uses and some are super super useful.</p>
+      </article>
+      <article>
+	<h3>Ajax</h3>
+<p>If you have ever made a Ajax request in plain javascript you would know what a pain it can be. With jQuery the process gets streamlined. </p>
+
+<pre>$.ajax({options and callbacks});</pre>
+
+<p>looks simple right. Heres what an actual call would look like</p>
+
+<pre>$.ajax({
+	url: ‘/feed/json?jsonp=?’,
+	dataType : ‘json’,
+ 	type: ‘get’,
+	error: function(err){
+	console.log(err);
+},
+success: function(res){
+	doSomething(res);
+}
+});</pre>
+
+<p>A little tougher, well there is also shorthands.</p>
+      </article>
+      <article>
+	<h3>Json</h3>
+
+<p>One of my favorite uses for this is to get api data asyncrounously and without writing out the fully function from before I simply do</p>
+
+<pre>$.getJson(‘/feed/json?jsonp=?’, function(res){
+	doSomething(res);
+});</pre>
+
+<p>and I get back the same data I would the last call.</p>
+      </article>
+      <article>
+	<h3>Just loading HTML</h3>
+
+<p>Most of the time youll be pulling in html from a sperate page, maybe even som specific content from that seperate page, and loading it into a container. Well just load it.</p>
+
+<pre>$(‘.container’).load(‘/content/coolstuff’);</pre>
+
+<p>So I got all the cool stuff. Maybe I just want #some cool stuff.</p>
+
+<pre>$(‘.container’).load(‘/content/coolstuff #some’);</pre>
+
+<p>Now you loaded only the content inside the id ‘some’. Now doing that without jQuery is a terrible task.</p>
+      </article>
+      <article>
+	<h3>Objects in jQuery</h3>
+
+<p>I seriously love this one function that is pretty essential to jQuery itself. That is ‘.extend’. Now extend is more of a utility for objects then and thing else.</p>
+
+<p>Lets say I have two objects</p>
+
+<pre>var obj1 = {
+	cool: true,
+	supercool: true,
+	majoreffincool: true
+};
+
+var obj2 = {
+	cool: true,
+	supercool: true,
+	majoreffincool: false
+};</pre>
+      </article>
+      <article>
+<p>Now obj1 is my input and obj2 is the users input, and really all i care about is the users input, but only obj1 is global. So i want to overwrite it.</p>
+
+<ul class="build">
+  <li>
+    <pre>$.extend(obj1, obj2);</pre>
+  </li>
+  <li>
+    <p>and thats it. Even if you were to have a multilayered object. Its no problem.</p>
+
+<pre>$.extend(true, obj1, obj2);</pre>
+  </li>
+  <li>
+    <p>multiple objects? more then 2 less the 3,758 still no prob.</p>
+
+    <pre>$.extend(obj1, obj2, obj3, 0bj4, obj5, obj6, obj7);</pre>
+  </li>
+  <li>
+    <p>Need a new object</p>
+
+    <pre>var objNew = $.extend({}, obj1, obj2, obj3);</pre>
+  </li>
+</ul>
+      </article>
+      <article>
+	<h4>Parsing XML</h4>
+
+<p>XML is beging to be an old mans technology, even tho HTML5 just trys to look like it. With XML you have all these crazy tags, and how well does jquery handle XML. You be the judge.</p>
+
+<pre>$.ajax({
+  url : ‘/my/xml/file.xml’,
+  dataType: ‘xml’,
+  success: function(res){
+    var users = res.find(‘users’);
+    users.each(function(){
+      $(‘body’).append(users.find(‘name’).text() + ‘<br/>’);
+    })
+  }
+})</pre>
+
+<p>Here I just loaded a XML file and created a list from the file by selecting each users name.</p>
+      </article>
+      <article>
+	<h1>Overview</h1>
+	<p>Y U No use jQuery</p>
       </article>
       <article>
         <h1>Questions?!?!</h1>
-        <p><a href="http://www.redeyeoperations.com/wp-content/uploads/2011/12/path-animation.html">Advanced Demo</a> of what Javascript and CSS3 animations can do together</p>
       </article>
     </section>
 <script src="script.js"></script>
