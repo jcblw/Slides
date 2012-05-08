@@ -14,6 +14,19 @@
 
 html {
   height: 100%;
+  background: url(http://subtlepatterns.com/patterns/gplaypattern.png);
+}
+
+html:-moz-full-screen {
+    background: url(http://subtlepatterns.com/patterns/gplaypattern.png);
+}
+
+html:-webkit-full-screen {
+    background: url(http://subtlepatterns.com/patterns/gplaypattern.png);
+}
+
+html:fullscreen {
+   background: url(http://subtlepatterns.com/patterns/gplaypattern.png);
 }
 
 body {
@@ -29,12 +42,24 @@ body {
   overflow-y: auto;
 
   background: rgb(215, 215, 215);
-  background: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-  background: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-  background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+  background: -o-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
+  background: -moz-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
+  background: -webkit-radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .3)));
 
   -webkit-font-smoothing: antialiased;
+}
+
+.fullscreen{
+	height: 32px;
+	width: 32px;
+	background-image: url(images/fullscreen.png);
+	background-position: 0px 0px;
+	top: 10px;
+	right: 10px;
+	font-size: 12px;
+	position: absolute;
+
 }
 
 .slides {
@@ -70,20 +95,20 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 
-  border-radius: 10px;
-  -o-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  border-radius: 4px;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 
   background-color: white;
 
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
-  border: 1px solid rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+  border: 3px solid rgba(255, 255, 255, .6);
 
-  transition: transform .3s ease-out;
-  -o-transition: -o-transform .3s ease-out;
-  -moz-transition: -moz-transform .3s ease-out;
-  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: transform .4s ease-out;
+  -o-transition: -o-transform .4s ease-out;
+  -moz-transition: -moz-transform .4s ease-out;
+  -webkit-transition: -webkit-transform .4s ease-out;
 }
 .slides.layout-widescreen > article {
   margin-left: -550px;
@@ -172,10 +197,11 @@ body {
 }
 .slides > article.past {
   display: block;
-  transform: translate(-1020px);
-  -o-transform: translate(-1020px);
-  -moz-transform: translate(-1020px);
-  -webkit-transform: translate3d(-1020px, 0, 0);
+  transform: translate(-1020px) rotateX(30deg);
+  -o-transform: translate(-1020px) rotateX(30deg);
+  -moz-transform: translate(-1020px) rotateX(30deg);
+  -webkit-transform: translate3d(-1020px, 0, 0) rotateX(30deg);
+  opacity: .6;
 }
 .slides > article.current {
   display: block;
@@ -183,13 +209,15 @@ body {
   -o-transform: translate(0);
   -moz-transform: translate(0);
   -webkit-transform: translate3d(0, 0, 0);
+  opacity: 1;
 }
 .slides > article.next {
   display: block;
-  transform: translate(1020px);
-  -o-transform: translate(1020px);
-  -moz-transform: translate(1020px);
-  -webkit-transform: translate3d(1020px, 0, 0);
+  transform: translate(1020px) rotateX(30deg);
+  -o-transform: translate(1020px) rotateX(30deg);
+  -moz-transform: translate(1020px) rotateX(30deg);
+  -webkit-transform: translate3d(1020px, 0, 0) rotateX(30deg);
+  opacity: .6;
 }
 .slides > article.far-next {
   display: block;
@@ -455,10 +483,10 @@ article.fill img {
   min-width: 100%;
   min-height: 100%;
 
-  border-radius: 10px;
-  -o-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  border-radius: 4px;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 
   z-index: -1;
 }
