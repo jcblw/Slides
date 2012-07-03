@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Plugged into jQuery</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='slides.js'></script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    
+    
+  </style>
+
+  <body style='display: none'>
+	<div class="bg-mock"></div>
+    <section class='slides layout-regular template-default'>
+    <div class="fullscreen"></div>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article>
+        <h1>
+        	<span class="green">Plugged into</span><br />
+           	<span class="blue">jQuery</span>
+          <br>
+        </h1>
+        <p>
+        	+ some optimizations <br />
+          	-Jacob Lowe
+        </p>
+      </article>
+      
+      <article class="smaller">
+        <h3 class="green">At a glance</h3>
+        <ul class="build">
+        	<li><span class="blue">Reducing Code</span>
+        		<ul>
+        			<li>Chaining Variables</li>
+        			<li>Ternary Logic - just a conditional shorthand</li>
+        		</ul>
+        	</li>
+        	<li><span class="blue">Anonomous Functions</span>
+        		<ul>
+        			<li>In comparison</li>
+        			<li>Self Executing</li>
+        		</ul>
+        	</li>
+        	<li><span class="blue">jQuery</span>
+        		<ul>
+        			<li>Useful Utils</li>
+        			<li>Making a Plugin
+        				<ul>
+        					<li class="red">Structures for 'Plugins'</li>
+        					<li class="red">Common Practices</li>
+        					<li class="red">Oh noes</li>
+        					<li class="red">Hello World Plugin</li>
+        				</ul>
+        			</li>
+        		</ul>
+        	</li>
+        </ul>
+      </article>
+      
+      <article class="fill">
+      	<img src="http://1.bp.blogspot.com/-_47_URAFrOc/TqDc0PdE24I/AAAAAAAABFY/jJsldOrbTm0/s1600/j0399350.jpg" />
+        <h3>Reducing Code</h3>
+        <p class="white">Less Clutter is easier to read & write</p>
+      </article>
+      <article>
+      	<h3 class="blue"> Chaining Variables</h3>
+      	
+		<p>Chaining is to link variables together using commas as if variable are in an array.</p>
+
+		<pre>var x = 1, 
+  y = 2,
+  z = x + y,
+  addAll = function(){
+  	return x + y + z
+  };
+		
+  document.write(addAll()); 
+  // results 3</pre>
+		
+		<p>Following variable can access data from previous variables.</p>
+      	
+      </article>
+      <article>
+      	<h3 class="green">Ternary Logic</h3>
+		<p>This is a simple way to use if else statement while declaring variable</p>
+		<pre>var x = null,
+    y = (x === null) ? 2 : 3;
+document.write(y) // result 2;</pre>
+		<ul>
+			<li>inside bracket are the if statement
+			<li>? is to declare the start of the results
+			<li>: is equal to else
+		</ul>
+		<p>This can be used for multiple layers of logic</p>
+      </article>
+      <article>
+      	<h1 class="red">Anonomous Functions</h1>
+      	<p>Ninja Party?</p>
+      	<img src=http://www.customsinfo.com/Portals/129262/images/ninja.jpg />
+      </article>
+      <article>
+      	<h3 class=green>In Contrast to the others</h3>
+      	<p>There are four different ways to declare a function in javascript</p>
+      	<pre>//Declaring inside of a variable
+var fn = function(){/*do stuff*/};
+
+//As a method
+var obj = {
+	fn: function(){/*do stuff*/}
+};
+
+//Stand Alone
+function fn (){/*do stuff*/};
+
+//Anonomous
+function(){/*do stuff*/};</pre>
+		<p>In this current state the anonomous function is useless</p>
+      </article>
+      <article>
+      	<h3>Self Executing</h3>
+      	<pre>//The most common &amp; will be processed in compressor
+(function(){/*do stuff*/}());
+
+//Hipster
++function(){/*do stuff*/}();
+
+// Facebooks way
+!function(){/*do stuff*/}();
+      	</pre>
+      		<p>Now these functions will execute by itself due to the parenthese at the end of the function.<br />Why use?</p>
+				<ul class=red>
+					<li>Avoid conflicts
+					<li>Private scope
+				</ul>
+      </article>
+      <article>
+      <h3 class=red>Common Uses</h3>
+      <pre>//Creating Wrappers fro jQuery code
+(function($){/*do $tuff*/}(jQuery));
+
+//setting undefined back to default
+(function(undefined){/*do stuff*/}())
+      </pre>
+      <p>Create a nice package for your Javascript application so no matter what is up above, your app, it will still function.</p>
+	  <p>This will give your code the ability to move around its position in the document, and avoid any mistakes that might venture into you application.</p>
+      </article>
+      <article>
+      <h1 class=blue>jQuery</h1>
+      <p>Javascript Badassery</p>
+      <img src=http://www.bloggerreflex.com/wp-content/uploads/2011/09/jQuery-CSS-Logo.jpg width=50px height=50px>
+      </article>
+      <article>
+      	<h3 class=red>Utilities</div> 
+		<h5>$.inArray(value, array);</h5>
+		<p>Check if a value is inside of an array Returns the integer of the position of found value</p>
+		<pre>var colors = ['red', 'white', 'blue'],
+  //See if green is a valid color in array, will return -1 if not in array
+    valid = ($.inArray('green', colors) > -1) ? true : false ;
+document.write(valid); // results false</pre>
+	  </article>
+	  <article>
+		<h5 class=blue>$.extend(targetObj, obj);</h5>
+		<p>Merge object literals together<br /> Will overwrite values of target object</p>
+		<pre>var colors = {red : true, blue: true, green: true},
+    noGreen = {green: false, white: true};
+$.extend(colors, noGreen);
+console.log(colors); // console will log
+/* {
+*    blue : true,
+*    green: false,
+*    red: true,
+*    white: true
+*}*/</pre>
+      </article>
+      <article>
+      	<h5>Making a jQuery plugin is a easy way to create an a global application.</h5>
+		<h4 class=blue>Common Structures</h4>
+
+		<pre>$.fn.helloWorld = function(){
+    alert('Hello World');
+};
+$(window).helloWorld();
+
+// =================== Other way
+// Passing only one obj to extend will allow you to extend jQuery obj
+$.extend({
+    helloWorld : function () {
+        alert('Hello World');
+    }
+});
+// This way is more of an extension
+$.helloWorld();</pre>
+      </article>
+      <article>
+      	<p>Common Practices 1</p>
+      	<h3 class=green>Wrapping your plugin</h3>
+		<pre>//Self Executing Anonymous Function 
+ (function($){
+    $.fn.foo = function(){
+        //Allows no conflict mode
+    }
+}(jQuery))</pre>
+<p>This is useful if you would like to be able to use code in multiple projects with worry of conflict.</p>
+	</article>
+	<article>
+		<p>Common Practices 2</p>
+		<h3 color=blue>Allowing Chaining</h3>
+		<pre>$.fn.foo = function(){
+   //Do something
+    return this;
+}
+// This will allow you to do something like this
+$('.element').foo().css('background', 'yellow');</pre>
+		<p>This will allow to use your plugin on the fly! Just throw it in with other methods and your a cool as a cucumber :)</p>
+     </article>
+     <article>
+     	<p>Common Practices 3</p>
+     	<h3 class=green>Options</h3>
+     	<p>If you dont want to have to scavenge your code to change one thing this is a great `option` for you.</p>
+     	<pre>$.fn.helloWorld = function(opts){
+	var options = {color:'blue',enabled:true};
+	//Using Extend
+	$.extend(options, opts);
+}
+
+$('.say').helloWorld({color:'green'});
+//will override color option
+     	</pre>
+     </article>
+     <article>
+     	<h3 class=red>Should I?</h3>
+     	<p>Nope.. Chuck Testa</p>
+     	<h4>Namespace</h4>
+     	<p>When making a plugin for multiple users dont take up to common names spaces. Lets say that you have a super cool plugin that puts a random slide picture in a element. Well if you used `$(ele).slide()` it could conflict. With lets say a plugin for a slider.</p>
+     	<h4>Multiple Namespace</h4>
+     	<p>A plugin that has `$(ele).slide()`, `$(ele).sliding()`, `$(ele).slider()`, and `$(ele).slid()` is too much! There can be so many conflicting plugins. Ok for internal use, but not for mass use</p>
+     </article>
+     <article>
+     	<h3>Demo Plugin - Click LinkVVVVV</h3>
+     	<a href=http://jsfiddle.net/wkM2P/>View Demo</a>
+     	<pre>//Self Executing Anonymous Function Wrap
+(function($){
+   // Data object
+   var data = {},
+       count = 0,
+       //String data for alert, using variable chaining
+        h = "Hello, ", str, href;
+    //Declaring $().helloWorld
+    $.fn.helloWorld = function(opts){
+        //Looping through all elements passed to plugin
+        var options = {pre : h, multi : '.. again'};
+        if(typeof opts === 'object'){
+          $.extend(options, opts);                                                
+        }
+        
+        $(this).each(function(i){
+            //Binding click to all elements
+            $(this).bind('click', function(){
+                //Graping the HREF attr
+                href = $(this).attr('href');
+                //Declaring String to pass to alert
+                str = (typeof data[href] === 'boolean') ? options.pre + href + options.multi : options.pre + href;
+                //Setting data[element.index] to true to signify the first hello has been called
+                data[href] = true;
+                // Alerting the created String
+                alert(str);
+                //Returning False to prevent default anchor behavior
+                return false;
+            });
+        });
+        count += 1;
+       //Returning this to allow chaining on plugin             
+       return this;
+    };
+//Closing and Calling Anonymous Function
+}(jQuery));</pre>
+     </article>
+     <article>
+     	<h1 class=blue>Questions?</h1>
+     </article>
+    </section>
+<script src="script.js"></script>
+  </body>
+</html>
