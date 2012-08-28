@@ -1,0 +1,140 @@
+<!doctype html>
+<title>Mustache Demo</title>
+<meta charset=utf-8 />
+<script src="mustache.js/mustache.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<style>
+	body{
+		margin: 0;
+		padding: 10px;
+		background: #fff;
+		color: #222;
+		font-family: sans-serif;
+	}
+	.photo-box{
+		float: left;
+		width: 150px;
+		height: 150px;
+		overflow: hidden;
+		background: rgb(20,20,20);
+		padding: 0;
+		position: relative;
+		color: #444;
+	}
+	.photo-box .photo-cover{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		box-shadow: inset 0px 0px 10px rgba(0,0,0,.5);
+		background: rgba(20,20,20,0);
+		-webkit-transition: background .3s ease-in .3s;
+	}
+	.title{
+		margin: 0 40px;
+	}
+	.photo-box:nth-child(3n+3){
+		width: 200px;
+	}
+	.photo-box:nth-child(2n+2){
+		width: 100px;
+	}
+	.photo-box:nth-child(8n+8){
+		width: 200px;
+	}
+	.photo-box:nth-child(15n+15){
+		width: 250px;
+	}
+	.photo-box:nth-child(3n+3) img, .photo-box:nth-child(8n+8) img{
+		zoom: 1.2;
+	}
+	.photo-box .photo-deets{
+		position: absolute;
+		top: 100%;
+		bottom: -100%;
+		left: 0;
+		right: 0;
+		padding: 10px;
+		color: #fefefe;
+		-webkit-transition: top .2s ease-in .3s, bottom .2s ease-in .3s;
+	}
+	.photo-box:hover .photo-deets{
+		top: 0;
+		bottom: 0;
+		-webkit-transition: top .5s ease-in .3s, bottom .5s ease-in .3s;
+	}
+	.photo-box:hover .photo-cover{
+		background: rgba(20,20,20,.8);
+		-webkit-transition: background .3s ease-in;
+	}
+	.photo-box img{
+		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.photo-box:hover .photo-deets a{
+		color: #8c0;
+	}
+</style>
+
+<div class="wrap">
+	<h1 style="margin-right: 40px;">Demo</h1>
+	<small class="title"></small>
+	<ul class="photo-list"></ul>
+</div>
+
+<script id="item-template" type="text/html">
+
+{{#items}}
+	
+	<li class=photo-box>
+		<img src={{media.m}} alt={{title}}/>
+		<div class=photo-cover></div>
+		<div class=photo-deets>
+			<h5> 
+				<a href={{link}}>{{title}}</a> 
+			</h5>
+			<small> {{&tags}} </small>
+		</div>
+	</li>
+
+{{/items}}
+{{^items}}
+  No Items :{(
+{{/items}}
+
+</script>
+<script>
+	// Actual Javascript
+	(function($){
+
+		console.log('requesting data');
+		var wrap = $('.wrap'),
+			options = {
+				tags 			: "mustache,funny",
+				tagmode			: "all",
+				format 			: "json",
+				safe_search 	: 1,
+				sort 			: "interestingness-desc",
+				per_page		: 14
+			}
+		$.ajax({
+			url 		: 'http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?',
+			dataType 	: 'jsonp',
+			type 		: 'get',
+			data 		: options,
+			success 	: function(res){
+
+				console.log(res);
+
+				var output = Mustache.render($('#item-template').html(), res);
+				wrap.find('.photo-list').html(output);
+				wrap.find('.title').html(res.title);
+
+			}
+		})
+
+	}(jQuery));
+</script>
