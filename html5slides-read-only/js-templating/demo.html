@@ -80,7 +80,7 @@
 </style>
 
 <div class="wrap">
-	<h1 style="margin-right: 40px;">Demo</h1>
+	<h1 style="margin-right: 40px;">Demo<button class="more">More Images</button></h1>
 	<small class="title"></small>
 	<ul class="photo-list"></ul>
 </div>
@@ -112,6 +112,7 @@
 
 		console.log('requesting data');
 		var wrap = $('.wrap'),
+			template = $('#item-template').html(),
 			options = {
 				tags 			: "mustache,funny",
 				tagmode			: "all",
@@ -119,7 +120,36 @@
 				safe_search 	: 1,
 				sort 			: "interestingness-desc",
 				per_page		: 14
-			}
+			},
+			items = null,
+			current = 0,
+			size = 5
+			get = function(start, number){
+
+				console.log([start, number, 'getting data']);
+				var itm = [], output;
+
+				for(start;start < number;start+=1){
+					//console.log(items);
+					if(typeof items[start] === 'object'){
+						itm.push(items[start]);
+					}
+				}
+
+				//console.log(itm);
+				output = Mustache.render(template, {items : itm});
+				wrap.find('.photo-list').append(output);
+
+			},
+			next = function(){
+				var nxt = (current + 1) * size;
+
+					if(nxt > items.length){
+						alert('No More Items');
+					}else{
+						get(nxt, size);
+					}
+			};
 		$.ajax({
 			url 		: 'http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?',
 			dataType 	: 'jsonp',
@@ -127,13 +157,16 @@
 			data 		: options,
 			success 	: function(res){
 
-				console.log(res);
-
-				var output = Mustache.render($('#item-template').html(), res);
-				wrap.find('.photo-list').html(output);
+				items = res.items;
 				wrap.find('.title').html(res.title);
 
+				get(current, size);
+
 			}
+		});
+
+		$('.more').bind('click', function(){
+			next();
 		})
 
 	}(jQuery));
