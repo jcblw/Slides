@@ -144,10 +144,12 @@
 			next = function(){
 				var nxt = (current + 1) * size;
 
+				current += 1;
+
 					if(nxt > items.length){
 						alert('No More Items');
 					}else{
-						get(nxt, size);
+						get(nxt, size + nxt);
 					}
 			};
 		$.ajax({
