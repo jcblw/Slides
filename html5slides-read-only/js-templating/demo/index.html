@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>js Templating</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='../slides.js'></script>
+  </head>
+  
+  <style>
+
+    .strike{
+      text-decoration: line-through;
+    }
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article>
+        <h1 class=grey>
+           <span class="green">js</span> Templating
+          <br>
+        </h1>
+        <span class="blue">Front End Version</span>
+        <p> - Jacob Lowe</p>
+      </article>
+      
+      <article>
+        <h3>Contemplating front end templating?</h3>
+        <b class="green">js Templating</b>
+        <p>Templating is the act of placing variables into a structure for replication. this will allow for higher level structures, cleaner code, and also consistency. JavaScript has a few templating frameworks that you might want to checkout</p>
+        <ul class=build>
+          <li><a href="https://github.com/janl/mustache.js">mustache</a>
+          <li><a href="http://twitter.github.com/hogan.js/">hogan - pretty much mustache</a>
+          <li><a href="http://handlebarsjs.com/">handlebars - another style of mustache</a>
+          <li><a href="http://underscorejs.org/">underscore - not a variation of mustache</a>
+          <li><a href="https://github.com/jasonmoo/t.js">t.js - A pencil Stache</a>
+          <li><a href="http://underscorejs.org/">jquery templates - looks more like underscore</a>
+        </ul>
+      </article>
+      
+      <article>
+        <h3>What it looks like</h3>
+        <hr/>
+        <b>Mustache</b>
+        <code><pre>&lt;p&gt;Hello {{user.name}}, welcome back&lt;/p&gt;</pre></code>
+        <b>Underscore</b>
+        <code><pre>&lt;p&gt;Hello &lt;%= user.name%&gt;, welcome back&lt;/p&gt;</pre></code>
+
+        <p> I perfer, me some mustache</p>
+      </article>
+      
+      <article class="fill current">
+        <img src="http://25.media.tumblr.com/tumblr_li34tdbq631qi40omo1_500.jpg" />
+        <ul class=build>
+          <li>
+            <h1 class="grey">And I also perfer it for templating as well</h1>
+          </li>
+          <li>
+            <a class="blue" href="http://babieswithfakemustaches.tumblr.com/">Baby Stache</a>
+          </li>
+        <ul>
+      </article>
+
+      <article class="smaller">
+        <h4>
+          Get Mustache!
+        </h4>
+        <p>Grow it?</p>
+        <h5 class="blue"> Using Git </h5>
+        <code><pre>cd ~/myapp/js/libs/ #this will differ for your app
+
+git clone https://github.com/janl/mustache.js.git</pre></code>
+        <h5 class="blue">Old fashion</h5>
+
+        <ul>
+          <li> Go to <a href="https://github.com/janl/mustache.js">Github Page</a>
+          <li> Click button titled ZIP to download zip file
+          <li> Uncompress file
+          <li> Place folder with your Javascript library files
+        </ul>
+      </article>
+      <article>
+        <h3>Adding to page</h3>
+        <p> Now its just javascript! so just include the mustache.js file in your html file.</p>
+        <code><pre>&lt;script src="js/libs/mustache.js/mustache.js"&gt;&lt;/script&gt;</pre></code>
+        <h3>Now you have the power</h3>
+        <p>Before we jump into using Mustache let see what it can do</p>
+        <a href="http://mustache.github.com/mustache.5.html">Mustache Documentation</a>
+      </article>
+      <article class="smaller">
+        <h3 class="green">Datasource</h3>
+        <p>Mustache takes JSON (javascript object notation) so we need to have a JSON object for the demo. Ill be using an RESTFUL api for the example, but you can use just a normal JSON.
+        <p>Eg.</p>
+        <code><pre>{[
+  {
+    "name"    : "Jacob Lowe",
+    "script"  : "Javascript",
+    "site"    : "http://redeyeoperation.com"
+  },
+  {
+    "name"    : "Scott Motte",
+    "script"  : "Coffee Script",
+    "site"    : "http://boxysign.com"
+  }
+]}</pre></code>
+        <p><a href="http://api.flickr.com/services/feeds/photos_public.gne?tags=long,exposure&tagmode=all&format=json">Click Here</a> to view what Ill be using</p>
+      </article>
+      <article class="smaller">
+        <h3>Creating a Template</h3>
+        <p> There are a few differnt ways to create a template.</p>
+        <h4 class=green>External File</h4>
+        <p>The template can get its own dedicated file. This works best when making large structured templates. Note that you must load these files to read the template so that may lead to slower speeds.</p>
+        <h4 class=green>Directly in Javascript</h4>
+        <p> This is the simplilest way so this could be the first way you try but it kinda defeats the purpose of templating & is terrible for large structures. Eg.</p>
+        <code><pre>Mustache.render('Hello {{user}}', {user : "Admin"})</pre></code>
+      </article>
+      <article class=smaller>
+        <h3 class=green>In Script Tags</h3>
+        <p>Good for medium size templates. Already loaded on page so no latency issues. Adds more code to your page.</p>
+        <code><pre>&lt;script id=user_mod_template type=text/html&gt;
+  &lt;div class=user_mod&gt;
+    &lt;ul&gt;
+      &lt;li class=user_name&gt;
+        &lt;p&gt;{{user}}&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li class=notifications&gt;
+        &lt;span&gt; {{notification_count}} &lt;span&gt;
+      &lt;/li&gt;
+      &lt;li class=avatar&gt;
+        &lt;img src={{avatar}} alt={{user}} /&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/script&gt;</pre></code>
+        <p>and to select this</p>
+        <code><pre>document.getElementById('user_mod_template').innerHTML</pre></code>
+      </article>
+      <article>
+        <h3 class=blue>Rendering the template</h3>
+        <p> Rendering a template couldnt be easier. Just call <code>Mustache</code> global variable the <code>.render</code> method. Passing some parameters, first template then data and you have a variable injected template</p>
+        <code><pre>//Select Template & Data
+var user_mod = document.getElementById('user_mod_template').innerHTML,
+  user_data = {
+    "user"                :"Jacob Lowe",
+    "notification_count"  :"3",
+    "avatar"              :"http://redeyeoperations.com/avatar.jpg"
+  },
+  //return html with variables
+  output = Mustache.render(user_mod, user_data);
+
+//Write to Document
+document.getElementById('user_mod_wrap').innerHTML = output;
+  </pre></code>
+      </article>
+      <article>
+        <h3 class="blue"> Why this is great </h3>
+        <p>If I load something into the a page via ajax request. I can quickly and neatly handle more data with having to sacrifice readablilty or complexity.</p>
+        <p>You set up a bridge to help gap the divide between backend and frontend templating</p>
+        <p>Mustaches are awesome!</p>
+        <p>Other templating frameworks are great too. Pick which suites you best.</p>
+      </article>
+      <article>
+        <h1 class=green>Lets see a demo!</h1>
+      </article>
+      <article class="fill far-next">
+        <iframe src="demo.html"></iframe>
+      </article>
+      <article>
+        <h1><a href=demo.zip>Download Demo</a></h1>
+      </article>
+      <article>
+        <span> I mustache, is there any</span>
+        <h1>Questions?!?!</h1>
+      </article>
+    </section>
+<script src="script.js"></script>
+  </body>
+</html>

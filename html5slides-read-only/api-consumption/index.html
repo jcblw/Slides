@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Javascript API Consumption</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='../slides.js'></script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article>
+        <h1>
+           <span class="green">Javascript API Consumption</span>
+          <br>
+        </h1>
+        <p>pt. 1 - Client Side</p>
+        <p>
+          <a href=http://jacoblowe.me >- Jacob Lowe</a>
+        
+        </p>
+      </article>
+      
+      <article>
+        <h4>What is a API?</h4>
+        <p>
+          An application programming interface (API) is a specification intended to be used as an interface by software components to communicate with each other. 
+        </p>
+        <small>Source: <a href=http://en.wikipedia.org/wiki/Application_programming_interface>Wikipedia</a></small>
+
+        <p>You can actually make an api with Javascript as well. <a href="https://speakerdeck.com/u/scottmotte/p/build-your-api-with-node-dot-js">Build your API with Node.js</a></p>
+      </article>
+      
+      <article>
+
+        <h4 class=blue>Tap into an Api</h4>
+        <p>Api can be called throught diffent http request methods types <span class=green>(eg : post, get, put, delete)</span>, so as long as you can send a request to the api you can get infomation from it. Frontend api consumption is pretty limited compared to server side consumption.</p>
+        <p> I reccomend starting with consuming JSON formatted APIS first. Its easier and fomatted for Javascript.</p>
+
+      </article>
+
+      <article>
+        <h4 class=red>pure JS example</h4>
+
+        <pre>var ur = ‘/path-to-api/filename.json’;
+
+// Open a connection to the server
+xmlHttp.open("GET", url, true);
+
+// Setup a function for the server to run when it's done
+xmlHttp.onreadystatechange = updateInfo;
+
+// Send the request
+xmlHttp.send(null);</pre>
+
+        <p>`xmlHttp` is window object for AJAX calls and `updateInfo` is a function that we can pass the data to.</p>
+
+      </article>
+      <article>
+	       <h4 class=blue>jQuery example</h4>
+         <p>To use this example you will need to have jQuery injected into your page.</p>
+         <pre>
+$.getJSON(‘/path-to-api/filename.json’, updateInfo); // shorthand jquery has many methods for ajax
+</pre>
+          <p>`getJSON` is a shorthand method for AJAX calls in jquery, we are also passing the data to updateInfo.</p>
+      </article>
+      <article>
+  	     <h3 class=green>Local vs Remote Calls</h3>
+         <p>This is where the whole server / client side issues come in. When working locally you can use any type of api, and pull the information into server side or client side. Also I mean local to the application, so if you place the application on a remote server, that remote server would be local to that application and it can make all the call locally.Eg of a client side local call.</p>
+         <pre>$.ajax({
+  url : ‘/test.json’, // local path
+  dataType : ‘json’, //json data type
+  method : ‘get’, // http method
+  success : function(response){ // callback for success
+    console.log(response.success); // will log out true              
+  }
+});</pre>
+      </article>
+      <article class="small">
+          <h3>Remote Calls Client Side</h3>
+
+        <p>Remote calls from client side are a bit differnt, browsers will not allow you to get data out of an remote api unless it is allowed to. Then api owner needs to enable thorugh cross domain policies. An easy way around this for JSON apis is to use JSONP calls which is a ‘JSON with Padding’. The padding allows you to pass the data to a function in javascript.</p>
+
+        <pre>$.ajax({
+  url       : ‘http://example.com/test.json’, // local path
+  dataType  : ‘jsonp’, //jsonp data type
+  method    : ‘get’, // http method
+  data      : {jsonp : ‘?’}, // specific to jquery 
+  success   : function(response){ // callback for success
+    console.log(response.success); // will log out true              
+  }
+});</pre>
+    
+      </article>
+
+      <article>
+        <h1>Questions?!?!</h1>
+        <p>Before the example</p>
+      </article>
+    </section>
+<script src="script.js"></script>
+  </body>
+</html>
