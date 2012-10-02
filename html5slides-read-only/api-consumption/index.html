@@ -74,16 +74,24 @@
       <article>
         <h4 class=red>pure JS example</h4>
 
-        <pre>var url = ‘/path-to-api/filename.json’;
+        <pre>var get = function(url, callback){
 
-// Open a connection to the server
-xmlHttp.open("GET", url, true);
+    var xmlhttp = new XMLHttpRequest();
+    // Open a connection to the server
+    xmlhttp.open("GET", url, true);
 
-// Setup a function for the server to run when it's done
-xmlHttp.onreadystatechange = updateInfo;
+    // Setup a function for the server to run when it's done
+    xmlhttp.onreadystatechange = callback;
 
-// Send the request
-xmlHttp.send(null);</pre>
+    // Send the request
+    xmlhttp.send(null);
+  };
+
+get('/path-to/test.json', function(e){
+
+  console.log(this.responseText);
+  
+})</pre>
 
         <p>`xmlHttp` is window object for AJAX calls and `updateInfo` is a function that we can pass the data to.</p>
 
